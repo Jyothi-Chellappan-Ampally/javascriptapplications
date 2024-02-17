@@ -1,0 +1,14 @@
+
+html,body{
+    
+    display: grid;
+    place-items: center;
+    background-color: #272c32;
+    background-position-x: center;
+    background-image: url("logo2.png");
+
+  }
+  
+#loading, #results {
+    display: none;
+}

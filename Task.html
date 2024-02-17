@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="app">
+        <h1>ToDo List</h1>
+        <form> 
+
+            <input type="text" placeholder="Type the task name">
+            <button type="submit">&plus;</button>
+            </form>
+            <ul>
+                <li>
+                    <input type="checkbox" onclick="taskComplete(this)" class="check">
+                    <input type="text" value="Excercise" class ="task" onfocus="getCurrentTask(this)" onBlur="editTask(this)">
+                    <i class="fa fa-trash" onclick="removeTask(this)"></i>
+                    
+                </li>
+            </ul>
+    </div>
+    </div>
+    <script>
+        window.onload=loadTasks();
+        document.querySelector('form').addEventListener('submit',e=>{e.preventDefault();
+        addTask()});
+
+        function loadTasks(){
+            if(localStorage.getItem('tasks')==null)
+            return;
+           
+            let tasks=Array.from(JSON.parse(localStorage.getItem('tasks')));
+
+            tasks.forEach(task =>{
+            const ul=document.querySelector('ul');
+            const li=document.createElement('li');
+            li.innerHTML=<input type='checkbox' onclick='taskComplete(this)' class='check' ${task.completed? 'checked':''}
+            onfocus='getCurrentTask(this)' onblur='editTask(this)'>
+            <i class='fa fa-trash' onclick='removeTask(this)'></i>
+            list.insertBefore(li,li.children[0]););
+            }
+
+       function addTask(){
+            const task=document.querySelector('form input');
+            const list=document.querySelector('ul');
+            if(task.value==null){
+                alert('Add some task');
+                return false;
+            }
+
+            if(document.querySelector('input[value='${task.value}']')){
+                alert('task already exist');
+                return false;
+            }
+//     localStorage.setItem('tasks',JSON.stringify([...JSON.parse(localStorage.getItem('tasks'))]))
+       }
+    </script>
+</body>
+</html>
